@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Selenium.Sampler.Controllers;
 using Web.Sampler;
 
 namespace Selenium.Sampler
@@ -6,12 +7,12 @@ namespace Selenium.Sampler
   [SetUpFixture]
   public abstract class TestSetup
   {
-    protected DriverSetup DriverSetup = new DriverSetup();
+    protected SessionController Session = new SessionController();
 
     [OneTimeSetUp]
-    public void OneTimeConfiguration() => DriverSetup.InitilizeBrowser().Visit(FileSettings.GetHtmlFileFroAssemblyFolder("RegistrationForm"));
+    public void OneTimeConfiguration() => Session.InitilizeBrowser().Visit(FileSettings.GetHtmlFileFroAssemblyFolder("RegistrationForm"));
 
     [OneTimeTearDown]
-    public void OneTimeDeconstruct() => DriverSetup.DisposeBrowser();
+    public void OneTimeDeconstruct() => Session.DisposeBrowser();
   }
 }

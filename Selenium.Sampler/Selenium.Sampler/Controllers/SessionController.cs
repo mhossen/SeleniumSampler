@@ -4,15 +4,15 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Threading;
 
-namespace Selenium.Sampler
+namespace Selenium.Sampler.Controllers
 {
-  public class DriverSetup
+  public class SessionController
   {
     public IWebDriver Driver { get; private set; }
     public IWebElement Element { get; private set; }
     public SelectElement Select { get; private set; }
 
-    public DriverSetup InitilizeBrowser()
+    public SessionController InitilizeBrowser()
     {
       if (Driver is null)
       {
@@ -25,37 +25,37 @@ namespace Selenium.Sampler
       return this;
     }
 
-    public DriverSetup Visit(string url)
+    public SessionController Visit(string url)
     {
       Driver.Navigate().GoToUrl(url);
       return this;
     }
 
-    public DriverSetup FindById(string id)
+    public SessionController FindById(string id)
     {
       Element = Driver.FindElement(By.Id(id));
       return this;
     }
 
-    public DriverSetup FillWithText(string text)
+    public SessionController FillWithText(string text)
     {
       Element.SendKeys(text);
       return this;
     }
 
-    public DriverSetup SelectById(string id)
+    public SessionController SelectById(string id)
     {
       Select = new SelectElement(this.FindById(id).Element);
       return this;
     }
 
-    public DriverSetup SelectOptionByValue(string value)
+    public SessionController SelectOptionByValue(string value)
     {
       Select.SelectByValue(value);
       return this;
     }
 
-    public DriverSetup Click()
+    public SessionController Click()
     {
       Thread.Sleep(350);
       Element.Click();

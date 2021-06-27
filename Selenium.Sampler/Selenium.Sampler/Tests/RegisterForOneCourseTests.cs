@@ -1,4 +1,4 @@
-﻿using Data.Sampler.MockData;
+﻿using Data.Sampler.Mock;
 using NUnit.Framework;
 using System.Threading;
 
@@ -10,13 +10,14 @@ namespace Selenium.Sampler.Tests
     [Test]
     public void CreateSingleRegistrationTest()
     {
-      var course = MockCourseRegister.CreateCourseRegister();
+      var course = MockCourseRegistry.CreateCourseRegister();
 
-      DriverSetup.FindById("fname").FillWithText(course.FullName);
-      DriverSetup.FindById("email").FillWithText(course.Email);
-      DriverSetup.FindById("phone").FillWithText(course.PhoneNumber);
-      DriverSetup.SelectById("courseSelector").SelectOptionByValue(course.CourseType);
-      DriverSetup.FindById("createbtn").Click();
+      Session
+        .FindById("fname").FillWithText(course.FullName)
+        .FindById("email").FillWithText(course.Email)
+        .FindById("phone").FillWithText(course.PhoneNumber)
+        .SelectById("courseSelector").SelectOptionByValue(course.CourseType)
+        .FindById("createbtn").Click();
       Thread.Sleep(2000);
     }
   }

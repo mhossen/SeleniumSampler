@@ -4,9 +4,9 @@ using Faker;
 using FizzWare.NBuilder;
 using System.Collections.Generic;
 
-namespace Data.Sampler.MockData
+namespace Data.Sampler.Mock
 {
-  public class MockCourseRegister
+  public class MockCourseRegistry
   {
     public static CourseRegister CreateCourseRegister()
     {

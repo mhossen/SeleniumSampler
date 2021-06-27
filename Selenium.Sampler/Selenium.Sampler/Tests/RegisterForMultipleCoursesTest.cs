@@ -1,21 +1,21 @@
-﻿using Data.Sampler.MockData;
+﻿using Data.Sampler.Mock;
 using Data.Sampler.Models;
 using NUnit.Framework;
-using System.Threading;
 
 namespace Selenium.Sampler.Tests
 {
   [TestFixture]
   public sealed class RegisterForMultipleCoursesTest : TestSetup
   {
-    [TestCaseSource(typeof(MockCourseRegister), nameof(MockCourseRegister.RegisterCourses))]
+    [TestCaseSource(typeof(MockCourseRegistry), nameof(MockCourseRegistry.RegisterCourses))]
     public void RegisterMultipleUserCourseTest(CourseRegister course)
     {
-      DriverSetup.FindById("fname").FillWithText(course.FullName);
-      DriverSetup.FindById("email").FillWithText(course.Email);
-      DriverSetup.FindById("phone").FillWithText(course.PhoneNumber);
-      DriverSetup.SelectById("courseSelector").SelectOptionByValue(course.CourseType);
-      DriverSetup.FindById("createbtn").Click();
+      Session
+        .FindById("fname").FillWithText(course.FullName)
+        .FindById("email").FillWithText(course.Email)
+        .FindById("phone").FillWithText(course.PhoneNumber)
+        .SelectById("courseSelector").SelectOptionByValue(course.CourseType)
+        .FindById("createbtn").Click();
     }
   }
 }
